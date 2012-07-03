@@ -143,6 +143,14 @@ public class SampleActivity extends SampleParentActivity {
 	@BundleTarget
 	ArrayList<Parcelable> testParcelableArrayList;
 
+	public enum TESTENUM {
+		TESTENUM1,
+		TESTENUM2
+	}
+
+	@BundleTarget
+	TESTENUM testEnum;
+
 	@BundleTarget
 	ParcelableObject testNull;
 
@@ -238,6 +246,7 @@ public class SampleActivity extends SampleParentActivity {
     	testParentProtected = 1;
     	testParentDefault = 1;
     	testNull = new ParcelableObject(1);
+    	testEnum = TESTENUM.TESTENUM1;
 //    	testNotSupportedBundleType = new NotSupportedBundleTypeObject(1);
     	testNotSupportedBundleTypeArrayList = new ArrayList<NotSupportedBundleTypeObject>();
     	testNotSupportedBundleTypeArrayList.add(new NotSupportedBundleTypeObject(1));
@@ -316,6 +325,7 @@ public class SampleActivity extends SampleParentActivity {
     	testParentProtected = 2;
     	testParentDefault = 2;
     	testNull = null;
+    	testEnum = TESTENUM.TESTENUM2;
 //    	testNotSupportedBundleType = new NotSupportedBundleTypeObject(2);
     	testNotSupportedBundleTypeArrayList = new ArrayList<NotSupportedBundleTypeObject>();
     	testNotSupportedBundleTypeArrayList.add(new NotSupportedBundleTypeObject(1));
@@ -503,6 +513,10 @@ public class SampleActivity extends SampleParentActivity {
 
     public ArrayList<Parcelable> getTestParcelableArrayList(){
     	return testParcelableArrayList;
+    }
+
+    public TESTENUM getTestEnum() {
+    	return testEnum;
     }
 
 //    public NotSupportedBundleTypeObject getNotSupportedBundleType(){

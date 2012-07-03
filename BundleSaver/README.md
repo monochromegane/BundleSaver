@@ -80,3 +80,4 @@ BundleSaverを利用したいActivityで、以下を参考に実装を行って�
 * `ArrayList<CharSequence>`
 * `ArrayList<Parcelable>`
 * `Serializable`
+* `Enum`
