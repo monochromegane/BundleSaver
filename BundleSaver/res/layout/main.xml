@@ -15,4 +15,10 @@
         android:layout_height="wrap_content"
         android:text="change_value" />
 
+    <Button
+        android:id="@+id/load_preference"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="load_preference" />
+
 </LinearLayout>

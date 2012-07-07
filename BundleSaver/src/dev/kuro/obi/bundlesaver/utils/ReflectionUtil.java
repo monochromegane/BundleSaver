@@ -58,6 +58,7 @@ public class ReflectionUtil {
 		return returnFields;
 	}
 
+
 	/**
 	 * 指定したフィールドのオブジェクトを取得します。
 	 * @param object
@@ -76,6 +77,7 @@ public class ReflectionUtil {
 		}
 		return returnObject;
 	}
+
 
 	/**
 	 * 指定したフィールドに値を設定します。

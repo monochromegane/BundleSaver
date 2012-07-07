@@ -8,139 +8,140 @@ import android.util.SparseArray;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import dev.kuro.obi.bundlesaver.AutoBundleSaver;
-import dev.kuro.obi.bundlesaver.NotSupportedBundleTypeException;
+import dev.kuro.obi.bundlesaver.AutoStateSaver;
 import dev.kuro.obi.bundlesaver.R;
-import dev.kuro.obi.bundlesaver.annotation.BundleTarget;
+import dev.kuro.obi.bundlesaver.annotation.SaveToBundle;
+import dev.kuro.obi.bundlesaver.annotation.SaveToPreference;
+import dev.kuro.obi.bundlesaver.exception.NotSupportedBundleTypeException;
 
 public class SampleActivity extends SampleParentActivity {
 
-	@BundleTarget
+	@SaveToBundle
 	public    int testAccessModiferPublic;
-	@BundleTarget
+	@SaveToBundle
 	protected int testAccessModiferProtected;
-	@BundleTarget
+	@SaveToBundle
 	          int testAccessModiferDefault;
-	@BundleTarget
+	@SaveToBundle
 	private   int testAccessModiferPrivate;
 
-	@BundleTarget
+	@SaveToBundle
 	int testAnnotationPresence;
 	int testAnnotationAbsence;
 
-	@BundleTarget
+	@SaveToBundle
 	short testPrimitiveShort;
-	@BundleTarget
+	@SaveToBundle
 	short[] testPrimitiveShortArray;
 
-	@BundleTarget
+	@SaveToBundle
 	Short testObjectShort;
-	@BundleTarget
+	@SaveToBundle
 	Short[] testObjectShortArray;
 
-	@BundleTarget
+	@SaveToBundle
 	int testPrimitiveInt;
-	@BundleTarget
+	@SaveToBundle
 	int[] testPrimitiveIntArray;
 
-	@BundleTarget
+	@SaveToBundle
 	Integer testObjectInt;
-	@BundleTarget
+	@SaveToBundle
 	Integer[] testObjectIntArray;
 
-	@BundleTarget
+	@SaveToBundle
 	long testPrimitiveLong;
-	@BundleTarget
+	@SaveToBundle
 	long[] testPrimitiveLongArray;
 
-	@BundleTarget
+	@SaveToBundle
 	Long testObjectLong;
-	@BundleTarget
+	@SaveToBundle
 	Long[] testObjectLongArray;
 
-	@BundleTarget
+	@SaveToBundle
 	float testPrimitiveFloat;
-	@BundleTarget
+	@SaveToBundle
 	float[] testPrimitiveFloatArray;
 
-	@BundleTarget
+	@SaveToBundle
 	Float testObjectFloat;
-	@BundleTarget
+	@SaveToBundle
 	Float[] testObjectFloatArray;
 
-	@BundleTarget
+	@SaveToBundle
 	double testPrimitiveDouble;
-	@BundleTarget
+	@SaveToBundle
 	double[] testPrimitiveDoubleArray;
 
-	@BundleTarget
+	@SaveToBundle
 	Double testObjectDouble;
-	@BundleTarget
+	@SaveToBundle
 	Double[] testObjectDoubleArray;
 
-	@BundleTarget
+	@SaveToBundle
 	byte testPrimitiveByte;
-	@BundleTarget
+	@SaveToBundle
 	byte[] testPrimitiveByteArray;
 
-	@BundleTarget
+	@SaveToBundle
 	Byte testObjectByte;
-	@BundleTarget
+	@SaveToBundle
 	Byte[] testObjectByteArray;
 
-	@BundleTarget
+	@SaveToBundle
 	boolean testPrimitiveBoolean;
-	@BundleTarget
+	@SaveToBundle
 	boolean[] testPrimitiveBooleanArray;
 
-	@BundleTarget
+	@SaveToBundle
 	Boolean testObjectBoolean;
-	@BundleTarget
+	@SaveToBundle
 	Boolean[] testObjectBooleanArray;
 
-	@BundleTarget
+	@SaveToBundle
 	char testPrimitiveChar;
-	@BundleTarget
+	@SaveToBundle
 	char[] testPrimitiveCharArray;
 
-	@BundleTarget
+	@SaveToBundle
 	Character testObjectChar;
-	@BundleTarget
+	@SaveToBundle
 	Character[] testObjectCharArray;
 
-	@BundleTarget
+	@SaveToBundle
 	String testString;
-	@BundleTarget
+	@SaveToBundle
 	String[] testStringArray;
 
-	@BundleTarget
+	@SaveToBundle
 	CharSequence testCharSequence;
-	@BundleTarget
+	@SaveToBundle
 	CharSequence[] testCharSequenceArray;
 
-	@BundleTarget
+	@SaveToBundle
 	Bundle testBundle;
 
-	@BundleTarget
+	@SaveToBundle
 	ParcelableObject testParcelable;
-	@BundleTarget
+	@SaveToBundle
 	ParcelableObjects testParcelables;
-	@BundleTarget
+	@SaveToBundle
 	ParcelableObject[] testParcelableArray;
 
-	@BundleTarget
+	@SaveToBundle
 	SerializableObject testSerializable;
 
-	@BundleTarget
+	@SaveToBundle
 	SparseArray<ParcelableObject> testSparseArray;
 
-	@BundleTarget
+	@SaveToBundle
 	ArrayList<String> testStringArrayList;
-	@BundleTarget
+	@SaveToBundle
 	ArrayList<Integer> testIntegerArrayList;
-	@BundleTarget
+	@SaveToBundle
 	ArrayList<CharSequence> testCharSequenceArrayList;
-	@BundleTarget
+	@SaveToBundle
 	ArrayList<Parcelable> testParcelableArrayList;
 
 	public enum TESTENUM {
@@ -148,23 +149,67 @@ public class SampleActivity extends SampleParentActivity {
 		TESTENUM2
 	}
 
-	@BundleTarget
+	@SaveToBundle
 	TESTENUM testEnum;
 
-	@BundleTarget
+	@SaveToBundle
 	ParcelableObject testNull;
 
-//	@BundleTarget
+//	@SaveTarget
 //	NotSupportedBundleTypeObject testNotSupportedBundleType;
-	@BundleTarget
+	@SaveToBundle
 	ArrayList<NotSupportedBundleTypeObject> testNotSupportedBundleTypeArrayList;
+
+
+
+	@SaveToPreference
+	int testPrefPrimitiveInt;
+
+	@SaveToPreference
+	Integer testPrefObjectInt;
+
+	@SaveToPreference
+	long testPrefPrimitiveLong;
+
+	@SaveToPreference
+	Long testPrefObjectLong;
+
+	@SaveToPreference
+	float testPrefPrimitiveFloat;
+
+	@SaveToPreference
+	Float testPrefObjectFloat;
+
+	@SaveToPreference
+	boolean testPrefPrimitiveBoolean;
+
+	@SaveToPreference
+	Boolean testPrefObjectBoolean;
+
+	@SaveToPreference
+	String testPrefString;
+
+	@SaveToBundle
+	@SaveToPreference
+	String testBundleAndPreference;
+
+	@SaveToPreference
+	NotSupportedBundleTypeObject testNotSupportedPreferenceType;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-        Button button = (Button)findViewById(R.id.change_value);
-        button.setOnClickListener(new OnClickListener() {
+        Button buttonChangValue = (Button)findViewById(R.id.change_value);
+        buttonChangValue.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+				changeValue();
+			}
+		});
+        Button buttonLoadPreference = (Button)findViewById(R.id.load_preference);
+        buttonLoadPreference.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
 				changeValue();
@@ -250,6 +295,18 @@ public class SampleActivity extends SampleParentActivity {
 //    	testNotSupportedBundleType = new NotSupportedBundleTypeObject(1);
     	testNotSupportedBundleTypeArrayList = new ArrayList<NotSupportedBundleTypeObject>();
     	testNotSupportedBundleTypeArrayList.add(new NotSupportedBundleTypeObject(1));
+
+    	testPrefPrimitiveInt = 1;
+    	testPrefObjectInt    = 1;
+    	testPrefPrimitiveLong = 1L;
+    	testPrefObjectLong    = 1L;
+    	testPrefPrimitiveFloat = 1f;
+    	testPrefObjectFloat    = 1f;
+    	testPrefPrimitiveBoolean = false;
+    	testPrefObjectBoolean    = false;
+    	testPrefString = "A";
+    	testBundleAndPreference = "A";
+//    	testNotSupportedPreferenceType = new NotSupportedBundleTypeObject(1);
     }
 
     private void changeValue(){
@@ -329,6 +386,27 @@ public class SampleActivity extends SampleParentActivity {
 //    	testNotSupportedBundleType = new NotSupportedBundleTypeObject(2);
     	testNotSupportedBundleTypeArrayList = new ArrayList<NotSupportedBundleTypeObject>();
     	testNotSupportedBundleTypeArrayList.add(new NotSupportedBundleTypeObject(1));
+
+    	testPrefPrimitiveInt = 2;
+    	testPrefObjectInt    = 2;
+    	testPrefPrimitiveLong = 2L;
+    	testPrefObjectLong    = 2L;
+    	testPrefPrimitiveFloat = 2f;
+    	testPrefObjectFloat    = 2f;
+    	testPrefPrimitiveBoolean = true;
+    	testPrefObjectBoolean    = true;
+    	testPrefString = "B";
+    	testBundleAndPreference = "B";
+//    	testNotSupportedPreferenceType = new NotSupportedBundleTypeObject(2);
+
+   }
+
+   public void loadPreference(){
+	   AutoStateSaver.getAutoStateSaver().restoreFromPreference(this, this);
+   }
+
+   public void clearPreference(){
+       AutoStateSaver.getAutoStateSaver().clearFromPreference(this);
    }
 
     public short getTestPrimitiveShort(){
@@ -551,11 +629,58 @@ public class SampleActivity extends SampleParentActivity {
     	};
     }
 
+
+
+    public int getTestPrefPrimitiveInt(){
+    	return testPrefPrimitiveInt;
+    }
+
+    public Integer getTestPrefObjectInt(){
+    	return testPrefObjectInt;
+    }
+
+    public long getTestPrefPrimitiveLong(){
+    	return testPrefPrimitiveLong;
+    }
+
+    public Long getTestPrefObjectLong(){
+    	return testPrefObjectLong;
+    }
+
+    public float getTestPrefPrimitiveFloat(){
+    	return testPrefPrimitiveFloat;
+    }
+
+    public Float getTestPrefObjectFloat(){
+    	return testPrefObjectFloat;
+    }
+
+    public boolean getTestPrefPrimitiveBoolean(){
+    	return testPrefPrimitiveBoolean;
+    }
+
+    public Boolean getTestPrefObjectBoolean(){
+    	return testPrefObjectBoolean;
+    }
+
+    public String getTestPrefString(){
+    	return testPrefString;
+    }
+
+    public String getTestBundleAndPreference(){
+    	return testBundleAndPreference;
+    }
+
+//    public NotSupportedBundleTypeObject getNotSupportedPreferenceType(){
+//    	return testNotSupportedPreferenceType;
+//    }
+
+
     @Override
 	protected void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
 		try{
-			AutoBundleSaver.getAutoBundleSaver().save(outState, this);
+			AutoStateSaver.getAutoStateSaver().saveToBundle(outState, this);
 		}catch(NotSupportedBundleTypeException e){
 		}
 	}
@@ -563,8 +688,16 @@ public class SampleActivity extends SampleParentActivity {
 	@Override
 	protected void onRestoreInstanceState(Bundle savedInstanceState) {
 		super.onRestoreInstanceState(savedInstanceState);
-		AutoBundleSaver.getAutoBundleSaver().restore(savedInstanceState, this);
+		AutoStateSaver.getAutoStateSaver().restoreFromBundle(savedInstanceState, this);
 	}
+
+
+	@Override
+	protected void onPause() {
+		super.onPause();
+		AutoStateSaver.getAutoStateSaver().saveToPreference(this, this);
+	}
+
 
 
 }

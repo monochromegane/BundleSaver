@@ -8,7 +8,7 @@ import android.os.Bundle;
 import dev.kuro.obi.bundlesaver.annotation.BundleTarget;
 import dev.kuro.obi.bundlesaver.utils.ReflectionUtil;
 
-public class AutoBundleSaver {
+@Deprecated public class AutoBundleSaver {
 
 	private static final String SEPARATOR = ",";
 
@@ -21,19 +21,23 @@ public class AutoBundleSaver {
 	}
 
 	/**
+	 * @deprecated 非推奨メソッド
+	 * {@link AutoStateSaver#getAutoStateSaver()}
 	 * インスタンス取得用の静的メソッド
 	 * @return
 	 */
-	public static AutoBundleSaver getAutoBundleSaver(){
+	@Deprecated public static AutoBundleSaver getAutoBundleSaver(){
 		return new AutoBundleSaver();
 	}
 
 	/**
+	 * @deprecated 非推奨メソッド
+	 * {@link AutoStateSaver#saveToBundle(Bundle, Object)}
 	 * BundleTargetアノテーションが設定されたインスタンス変数フィールドをBundleへ保存します。
 	 * @param bundle
 	 * @param rootObject
 	 */
-	public void save(Bundle bundle, Object rootObject) {
+	@Deprecated public void save(Bundle bundle, Object rootObject) {
 
 		BundleSaver saver = BundleSaver.getBundleSaver(bundle);
 		List<Class<?>> superClasses = ReflectionUtil.getSuperClasses(rootObject, Activity.class);
@@ -44,7 +48,7 @@ public class AutoBundleSaver {
 			for(Field field: fields){
 
 				// Bundleへ保存
-				saver.putToBundle(
+				saver.put(
 						genKey(className, field.getName()),
 						ReflectionUtil.getFieldObject(rootObject, field)
 						);
@@ -53,11 +57,13 @@ public class AutoBundleSaver {
 	}
 
 	/**
+	 * @deprecated 非推奨メソッド
+	 * {@link AutoStateSaver#restoreFromBundle(Bundle, Object)}
 	 * BundleTargetアノテーションが設定されたインスタンス変数フィールドをBundleから復元します。
 	 * @param bundle
 	 * @param rootObject
 	 */
-	public void restore(Bundle bundle, Object rootObject){
+	@Deprecated public void restore(Bundle bundle, Object rootObject){
 
 		BundleSaver saver = BundleSaver.getBundleSaver(bundle);
 		List<Class<?>> superClasses = ReflectionUtil.getSuperClasses(rootObject, Activity.class);
@@ -71,7 +77,7 @@ public class AutoBundleSaver {
 				ReflectionUtil.setFieldValue(
 						rootObject,
 						field,
-						saver.getFromBundle(genKey(className, field.getName()), field.getType()));
+						saver.get(genKey(className, field.getName()), field.getType()));
 
 			}
 		}

@@ -6,9 +6,11 @@ import java.util.ArrayList;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.SparseArray;
+import dev.kuro.obi.bundlesaver.annotation.SaveToBundle;
+import dev.kuro.obi.bundlesaver.exception.NotSupportedBundleTypeException;
 import dev.kuro.obi.bundlesaver.utils.ArrayUtil;
 
-public class BundleSaver {
+public class BundleSaver implements SaverBehivor{
 
 	Bundle bundle;
 
@@ -37,7 +39,7 @@ public class BundleSaver {
 	 * @param key
 	 * @param fieldObject
 	 */
-	public void putToBundle(String key, Object fieldObject){
+	public void put(String key, Object fieldObject){
 
 		if(fieldObject == null) return;
 
@@ -164,7 +166,7 @@ public class BundleSaver {
 	 * @param type
 	 * @return
 	 */
-	public Object getFromBundle(String key, Class<?> type){
+	public Object get(String key, Class<?> type){
 
 		Object object;
 
@@ -267,6 +269,11 @@ public class BundleSaver {
 			}
 		}
 		return true;
+	}
+
+	@Override
+	public Class<?> getTargetAnnotation() {
+		return SaveToBundle.class;
 	}
 
 }

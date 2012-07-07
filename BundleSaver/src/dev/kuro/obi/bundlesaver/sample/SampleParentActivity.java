@@ -1,17 +1,17 @@
 package dev.kuro.obi.bundlesaver.sample;
 
 import android.app.Activity;
-import dev.kuro.obi.bundlesaver.annotation.BundleTarget;
+import dev.kuro.obi.bundlesaver.annotation.SaveToBundle;
 
 public class SampleParentActivity extends Activity {
 
-	@BundleTarget
+	@SaveToBundle
 	public    int testParentPublic;
-	@BundleTarget
+	@SaveToBundle
 	protected int testParentProtected;
-	@BundleTarget
+	@SaveToBundle
 			  int testParentDefault;
-	@BundleTarget
+	@SaveToBundle
 	private   int testParentPrivate;
 
 }

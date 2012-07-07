@@ -1,4 +1,4 @@
-package dev.kuro.obi.bundlesaver;
+package dev.kuro.obi.bundlesaver.exception;
 
 public class NotSupportedBundleTypeException extends RuntimeException {
 
