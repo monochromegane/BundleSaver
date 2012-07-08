@@ -71,16 +71,16 @@ public class PreferenceSaver implements SaverBehivor{
 
 		Object object;
 
-		if(type == Integer.class){
+		if(type == int.class || type == Integer.class){
 			object = pref.getInt(key, Integer.MIN_VALUE);
 
-		}else if(type == Long.class){
+		}else if(type == long.class || type == Long.class){
 			object = pref.getLong(key, Long.MIN_VALUE);
 
-		}else if(type == Float.class){
+		}else if(type == float.class || type == Float.class){
 			object = pref.getFloat(key, Float.MIN_VALUE);
 
-		}else if(type == Boolean.class){
+		}else if(type == boolean.class || type == Boolean.class){
 			object = pref.getBoolean(key, Boolean.FALSE);
 
 		}else if(type == String.class){

@@ -1,21 +1,21 @@
-BundleSaver
+StateSaver
 ======================
 Android用ユーティリティ。  
-Bundleへの保存/復元を自動化してくれます。
+BundleまたはPreferenceに対するActivity状態の保存/復元を自動化してくれます。
  
 使い方
 ------
-### 1. BundleSaverの読み込み ###
-BundleSaverを利用したいプロジェクトにBundleSaverプロジェクトもしくは、  
+### 1. StateSaverの読み込み ###
+StateSaverを利用したいプロジェクトにStateSaverプロジェクトもしくは、  
 jarファイルをビルドパスに通してください。
 
  
-### 2. Activityでの使い方 ###
-BundleSaverを利用したいActivityで、以下を参考に実装を行ってください。
+### 2. Activityでの使い方(Bundleへの保存) ###
+StateSaverを利用したいActivityで、以下を参考に実装を行ってください。
     
-    // Bundleへの保存/復元したいインスタンス変数に
-    // BundleTargetアノテーションを設定します。
-    @BundleTarget
+    // Bundleへ保存/復元したいインスタンス変数に
+    // SaveToBundleアノテーションを設定します。
+    @SaveToBundle
     int count;
 
     @Override
@@ -23,9 +23,9 @@ BundleSaverを利用したいActivityで、以下を参考に実装を行って�
         super.onSaveInstanceState(outState);
         
         try{
-            // BundleTargetアノテーションが設定されたインスタンス変数を
+            // SaveToBundleアノテーションが設定されたインスタンス変数を
             // Bundleへ保存します。
-            AutoBundleSaver.getAutoBundleSaver().save(outState`, this);
+            AutoStateSaver.getAutoStateSaver().saveToBundle(outState, this);
             
         }catch(NotSupportedBundleTypeException e){
             // Bundleへ保存できない型を指定した場合、
@@ -36,12 +36,42 @@ BundleSaverを利用したいActivityで、以下を参考に実装を行って�
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        // BundleTargetアノテーションが設定されたインスタンス変数へ
+        // SaveToBundleアノテーションが設定されたインスタンス変数へ
         // Bundleの値を復元します。
-        AutoBundleSaver.getAutoBundleSaver().restore(savedInstanceState`, this);
+        AutoStateSaver.getAutoStateSaver().restoreFromBundle(savedInstanceState, this);
     }
 
-サポートする型
+### 3. Activityでの使い方(Preferenceへの保存) ###
+StateSaverを利用したいActivityで、以下を参考に実装を行ってください。
+    
+    // Preferenceへ保存/復元したいインスタンス変数に
+    // SaveToPreferenceアノテーションを設定します。
+    @SaveToPreference
+    int count;
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        
+        try{
+            // SaveToPreferenceアノテーションが設定されたインスタンス変数を
+            // Preferenceへ保存します。
+            AutoStateSaver.getAutoStateSaver().saveToPreference(this, this);
+            
+        }catch(NotSupportedPreferenceTypeException e){
+            // Preferenceへ保存できない型を指定した場合、
+            // 実行時例外が発生します。
+        }
+    }
+
+    // 任意のタイミング(onCreate等)で値を復元します。
+    private void loadFromPreference() {
+        // SaveToPreferenceアノテーションが設定されたインスタンス変数へ
+        // Bundleの値を復元します。
+        AutoStateSaver.getAutoStateSaver().restoreFromPreference(this, this);
+    }
+
+サポートする型(Bundle)
 ------
 ### 1. プリミティブ型 ###
 全てのプリミティブ型と、その配列を保存/復元対象とすることができます。
@@ -81,3 +111,26 @@ BundleSaverを利用したいActivityで、以下を参考に実装を行って�
 * `ArrayList<Parcelable>`
 * `Serializable`
 * `Enum`
+
+サポートする型(Preference)
+------
+### 1. プリミティブ型 ###
+以下のプリミティブ型を保存/復元対象とすることができます。
+
+* `int`
+* `long`
+* `float`
+* `boolean`
+
+### 2. ラッパーオブジェクト ###
+プリミティブ型に対応するラッパーオブジェクトを保存/復元対象とすることができます。
+
+* `Integer`
+* `Long`
+* `Float`
+* `Boolean`
+
+### 3. オブジェクト ###
+以下のオブジェクトを保存/復元対象とすることができます。
+
+* `String`

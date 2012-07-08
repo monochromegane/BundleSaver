@@ -212,7 +212,7 @@ public class SampleActivity extends SampleParentActivity {
         buttonLoadPreference.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
-				changeValue();
+				loadPreference();
 			}
 		});
         setInitValue();
